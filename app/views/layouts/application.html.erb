@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Blog</title>
+		<%= auto_discovery_link_tag :atom, posts_path(:format => :atom) %>
+		<%= stylesheet_link_tag    "application" %>
+		<%= javascript_include_tag "application" %>
+		<%= csrf_meta_tags %>
+	</head>
+	<body>
+		<div class="head"></div>
+		<h1 class="headleft">Welcome to Blog</h1>
+		<div class="headright">
+			<% if signed_in? %>
+			<p>
+				Hi, <%= current_user.name %>  |  <%= link_to 'Sign out', signout_path, :method => :delete %>
+			</p>
+			<% end %>
+		</div>
+
+		<div class="container">
+			<%= yield %>
+		</div>
+	</body>
+</html>
